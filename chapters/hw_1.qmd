@@ -24,13 +24,13 @@ engine : knitr
 
 Standart Bootstrap - 500 репликаций
 
-![16s_NJ](../hw_1_mat/16s_NJ.svg)
+![16s_NJ](../figs/hw_1/16s_NJ.svg)
 
-![16s_ML](../hw_1_mat/16s_ML.svg)
+![16s_ML](../figs/hw_1/16s_ML.svg)
 
-![peptidyl-trna-hydrolase_NJ](../hw_1_mat/peptidyl-trna-hydrolase_NJ.svg)
+![peptidyl-trna-hydrolase_NJ](../figs/hw_1/peptidyl-trna-hydrolase_NJ.svg)
 
-![peptidyl-trna-hydrolase_ML](../hw_1_mat/peptidyl-trna-hydrolase_ML.svg)
+![peptidyl-trna-hydrolase_ML](../figs/hw_1/peptidyl-trna-hydrolase_ML.svg)
 
 ## Подумаем
 

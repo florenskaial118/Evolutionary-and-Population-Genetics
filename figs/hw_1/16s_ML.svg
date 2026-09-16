@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="532" height="312" name="16s_ML.svg" y="0" viewBox="0 0 532 312">
+<polyline points="532,312 0,312 0,0 532,0 532,312" fill="white" />
+<text x="453" y="37" fill="#000000" font-size="12" font-family="Arial" > YERPE</text>
+<polyline points="443,45 443,32 448,32" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<text x="453" y="63" fill="#000000" font-size="12" font-family="Arial" > YERPS</text>
+<polyline points="443,46 443,58 448,58" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<polyline points="368,64 368,45 443,45" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<text x="443" y="89" fill="#000000" font-size="12" font-family="Arial" > SALTY</text>
+<polyline points="368,65 368,84 438,84" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<polyline points="262,87 262,64 368,64" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<text x="447" y="115" fill="#000000" font-size="12" font-family="Arial" > PASMU</text>
+<polyline points="262,88 262,110 442,110" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<polyline points="66,118 66,87 262,87" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<text x="350" y="141" fill="#000000" font-size="12" font-family="Arial" > BURCA</text>
+<polyline points="181,149 181,136 345,136" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<text x="339" y="167" fill="#000000" font-size="12" font-family="Arial" > NEIMA</text>
+<polyline points="181,150 181,162 334,162" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<polyline points="66,119 66,149 181,149" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<polyline points="40,159 40,118 66,118" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<text x="453" y="193" fill="#000000" font-size="12" font-family="Arial" > BRAJA</text>
+<polyline points="274,201 274,188 448,188" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<text x="390" y="219" fill="#000000" font-size="12" font-family="Arial" > AGRRK</text>
+<polyline points="274,202 274,214 385,214" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<polyline points="40,160 40,201 274,201" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<text x="162" y="165" fill="#000000" font-size="9" font-family="Arial" >100</text>
+<text x="255" y="217" fill="#000000" font-size="9" font-family="Arial" >100</text>
+<text x="243" y="80" fill="#000000" font-size="9" font-family="Arial" >100</text>
+<text x="424" y="38" fill="#000000" font-size="9" font-family="Arial" >100</text>
+<text x="349" y="57" fill="#000000" font-size="9" font-family="Arial" >100</text>
+<line x1="60" y1="243" x2="186" y2="243" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<line x1="60" y1="239" x2="60" y2="247" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<line x1="186" y1="239" x2="186" y2="247" stroke="#000000" stroke-width="1" stroke-linecap="square"/>
+<text x="116" y="271" fill="#000000" font-size="9" font-family="Arial" >0.05</text>
+</svg>
