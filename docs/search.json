@@ -1,0 +1,42 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Эволюционная и популяционная генетика",
+    "section": "",
+    "text": "1 Домашние работы по эволюционной и популяционной генетике\nРепозиторий содержит выполнение практических и домашних заданий в рамках обучения на 2-м курсе магистратуры Высшей школы биологической инженерии (ВШБИ) МФТИ.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Домашние работы по эволюционной и популяционной генетике</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/hw_1.html",
+    "href": "chapters/hw_1.html",
+    "title": "2  Домашнее задание 1",
+    "section": "",
+    "text": "2.1 MSA\nПровести MSA и построить дерево с помощью NJ и ML алгоритмов для:\nОтветить на вопросы:\nВыполним в MEGA с помощью CluscalW",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Домашнее задание 1</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/hw_1.html#построение-деревьев",
+    "href": "chapters/hw_1.html#построение-деревьев",
+    "title": "2  Домашнее задание 1",
+    "section": "2.2 Построение деревьев",
+    "text": "2.2 Построение деревьев\nStandart Bootstrap - 500 репликаций\n\n\n\n16s_NJ\n\n\n\n\n\n16s_ML\n\n\n\n\n\npeptidyl-trna-hydrolase_NJ\n\n\n\n\n\npeptidyl-trna-hydrolase_ML",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Домашнее задание 1</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/hw_1.html#подумаем",
+    "href": "chapters/hw_1.html#подумаем",
+    "title": "2  Домашнее задание 1",
+    "section": "2.3 Подумаем",
+    "text": "2.3 Подумаем\nВидно, что топологии 16s и Peptidyl-tRNA hydrolase деревьев незначительно отличаются (положение NEIMA по отношению к BURCA и кладе YERPS, YERPE, SALTY, PASMU).\nБутстрепы на дереве с 16s РНК более высокие, то есть топология более стабильна. Я думаю, что это связано с тем, что 16s РНК является некодирующей и довольно консервативна. Она эволюционирует медленно и равномерно.\nА Peptidyl-tRNA hydrolase — это белок-кодирующий ген. Из-за давления ествественного отбора и горизонтального переноса генов в нем эволюция идет активнее и может быть разной для разных линий бактерий.\nПоэтому дерево 16S точнее показывает эволюцию бактерий (здесь NJ и ML почти не отличаются).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Домашнее задание 1</span>"
+    ]
+  }
+]

@@ -1,0 +1,13 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Эволюционная и популяционная генетика"
+  chapters:
+    - index.qmd
+    - chapters/hw_1.qmd
+
+format:
+  html:
+    theme: cosmo
