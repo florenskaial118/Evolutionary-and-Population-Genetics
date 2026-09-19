@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Лекция 2. F-статистика – Эволюционная и популяционная генетика</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/hw_1.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/lection_2.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Лекция 2. F-статистика</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Эволюционная и популяционная генетика</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">О книге</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/hw_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Домашнее задание 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/lection_2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Лекция 2. F-статистика</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#введение" id="toc-введение" class="nav-link active" data-scroll-target="#введение"><span class="header-section-number">3.1</span> Введение</a></li>
+  <li><a href="#нуклеотидное-разнообразие-pi" id="toc-нуклеотидное-разнообразие-pi" class="nav-link" data-scroll-target="#нуклеотидное-разнообразие-pi"><span class="header-section-number">3.2</span> Нуклеотидное разнообразие <span class="math inline">\(\pi\)</span></a></li>
+  <li><a href="#закон-харди-вайнберга" id="toc-закон-харди-вайнберга" class="nav-link" data-scroll-target="#закон-харди-вайнберга"><span class="header-section-number">3.3</span> Закон Харди-Вайнберга</a></li>
+  <li><a href="#родство" id="toc-родство" class="nav-link" data-scroll-target="#родство"><span class="header-section-number">3.4</span> Родство</a></li>
+  <li><a href="#коэффициент-инбридинга" id="toc-коэффициент-инбридинга" class="nav-link" data-scroll-target="#коэффициент-инбридинга"><span class="header-section-number">3.5</span> Коэффициент инбридинга</a></li>
+  <li><a href="#индексы-фиксации-f-статистики" id="toc-индексы-фиксации-f-статистики" class="nav-link" data-scroll-target="#индексы-фиксации-f-статистики"><span class="header-section-number">3.6</span> Индексы фиксации (F-статистики)</a></li>
+  <li><a href="#amova" id="toc-amova" class="nav-link" data-scroll-target="#amova"><span class="header-section-number">3.7</span> AMOVA</a></li>
+  <li><a href="#другие-статистики" id="toc-другие-статистики" class="nav-link" data-scroll-target="#другие-статистики"><span class="header-section-number">3.8</span> Другие статистики</a></li>
+  <li><a href="#nick-patterson" id="toc-nick-patterson" class="nav-link" data-scroll-target="#nick-patterson"><span class="header-section-number">3.9</span> Nick Patterson</a>
+  <ul class="collapse">
+  <li><a href="#f2" id="toc-f2" class="nav-link" data-scroll-target="#f2"><span class="header-section-number">3.9.1</span> F2</a></li>
+  <li><a href="#f3" id="toc-f3" class="nav-link" data-scroll-target="#f3"><span class="header-section-number">3.9.2</span> F3</a></li>
+  <li><a href="#f4-статистика" id="toc-f4-статистика" class="nav-link" data-scroll-target="#f4-статистика"><span class="header-section-number">3.9.3</span> F4-статистика</a></li>
+  </ul></li>
+  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca"><span class="header-section-number">3.10</span> PCA</a></li>
+  <li><a href="#кластеризация" id="toc-кластеризация" class="nav-link" data-scroll-target="#кластеризация"><span class="header-section-number">3.11</span> Кластеризация</a></li>
+  <li><a href="#пакет-admixtools-qp" id="toc-пакет-admixtools-qp" class="nav-link" data-scroll-target="#пакет-admixtools-qp"><span class="header-section-number">3.12</span> Пакет ADMIXTOOLS qp</a></li>
+  <li><a href="#домашнее-задание-2" id="toc-домашнее-задание-2" class="nav-link" data-scroll-target="#домашнее-задание-2"><span class="header-section-number">3.13</span> Домашнее задание 2</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/edit/main/chapters/lection_2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/blob/main/chapters/lection_2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Лекция 2. F-статистика</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="введение" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="введение"><span class="header-section-number">3.1</span> Введение</h2>
+<p>Популяционная генетика изучает частоты аллелей в популяциях и различия между ними. Нас интересует частота аллелей — например, аллель, дающий нормальную лактазу, или аллель, определяющий окрас.</p>
+<p>Мы хотим сравнивать частоты аллелей и находить разницу между популяциями.</p>
+</section>
+<section id="нуклеотидное-разнообразие-pi" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="нуклеотидное-разнообразие-pi"><span class="header-section-number">3.2</span> Нуклеотидное разнообразие <span class="math inline">\(\pi\)</span></h2>
+<p>Пусть есть большая популяция с большим количеством представителей. Между любыми двумя представителями есть какое-то количество мутаций, которые их отличают. Между особями одного вида их мало, между особями разных видов — много.</p>
+<p>Пример: три вида дрозофил. Пусть есть 6 особей одного вида, нас интересует попарное сравнение и вычисление среднего числа замен. Для этого расчёта нужно сделать <span class="math inline">\(\binom{6}{2} = 15\)</span> сравнений, потом суммируем число отличающихся позиций, делим на 15 и нормализуем по длине самого гена.</p>
+<p>Строго говоря, значение само по себе мало что даёт — важно сравнивать его между популяциями.</p>
+<p>Эта метрика довольно простая, но её до сих пор используют в довольно серьёзных статьях.</p>
+<p>Иногда считают Tajima’s D = <span class="math inline">\(\pi - \theta\)</span> — разница наблюдаемого и ожидаемого нуклеотидного разнообразия (по какому-то референсу). Здесь число несёт уже больше смысла:</p>
+<ul>
+<li>если меньше ожидаемого — есть очищающий отбор,</li>
+<li>если больше — положительный отбор,</li>
+<li>если равно ожидаемому — нейтральный (дрейф).</li>
+</ul>
+<p>Иногда считают отдельно для синонимичных и несинонимичных замен.</p>
+</section>
+<section id="закон-харди-вайнберга" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="закон-харди-вайнберга"><span class="header-section-number">3.3</span> Закон Харди-Вайнберга</h2>
+<p><span class="math display">\[p + q = 1\]</span> <span class="math display">\[p^2 + 2pq + q^2 = 1\]</span></p>
+<p>Он довольно примитивен, но в реальности всё действительно сводится к нему.</p>
+<p>Пример с медведями: белый окрас по рецессивному аллелю GG, а AG, AA — чёрные. Была вычислена частота аллелей: AA, AG, GG — 42, 24, 21.</p>
+<p>Пусть <span class="math inline">\(p\)</span> - частота аллеля <span class="math inline">\(A\)</span>, <span class="math inline">\(q\)</span> - частота аллеля <span class="math inline">\(G\)</span>, <span class="math inline">\(N = 87\)</span>.</p>
+<p><span class="math display">\[p = \frac{2AA}{2N} + \frac{AG}{2N} = \frac{42}{87} + \frac{24}{2 \cdot 87} = 0.62\]</span> <span class="math display">\[q = \frac{2GG}{2N} + \frac{AG}{2N} = \frac{21}{87} + \frac{24}{2 \cdot 87} = 0.38\]</span></p>
+<p><span class="math inline">\(2pq = 0.47\)</span>, но из наших данных должно быть <span class="math inline">\(24/87 = 0.28\)</span> — меньше, чем ожидается. Видимо, гетерозиготам невыгодно быть? Это может указывать на отклонение от равновесия Харди-Вайнберга, например, из-за инбридинга или отбора.</p>
+<p>А что если три аллеля? A, B, C:</p>
+<p><span class="math display">\[p_a^2 + p_b^2 + p_c^2 + 2p_ap_b + 2p_bp_c + 2p_ap_c\]</span></p>
+<p>Аналогично можно экстраполировать это всё на очень большое число аллелей, и закон всё ещё будет справедлив. На нём строятся более сложные статистики.</p>
+</section>
+<section id="родство" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="родство"><span class="header-section-number">3.4</span> Родство</h2>
+<p>Identical by descent (IBD) — аллели, которые идентичны из-за наследования от общего предка.</p>
+<p><span class="math display">\[F_{ij} = \frac{1}{4} r_1 + \frac{1}{2} r_2\]</span></p>
+<p>где <span class="math inline">\(F_{ij}\)</span> — мера родства между особями <span class="math inline">\(i\)</span> и <span class="math inline">\(j\)</span>, <span class="math inline">\(r_1\)</span> — вероятность, что 1 аллель IBD, <span class="math inline">\(r_2\)</span> — вероятность, что 2 аллеля IBD.</p>
+<p>Расчёт между отцом и сыном ничего не даёт — это сравнительная метрика.</p>
+</section>
+<section id="коэффициент-инбридинга" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="коэффициент-инбридинга"><span class="header-section-number">3.5</span> Коэффициент инбридинга</h2>
+<p>Скрещивание близкородственных связей.</p>
+<p><span class="math display">\[F = \sum \frac{1}{2^{n_i}} (1 + f_{A_i})\]</span></p>
+<p>где <span class="math inline">\(f_{A_i}\)</span> — коэффициент инбридинга для общего предка (например в случае Чарльза II — это были бабушка с дедушкой), сумма по количеству общих предков; <span class="math inline">\(n_i\)</span> — длина пути от одного родителя к другому по генеалогическому дереву.</p>
+<p>Через коэффициент инбридинга можно ввести обобщённый Харди-Вайнберг: <span class="math display">\[f_{11} = (1 - F) \ldots\]</span></p>
+<p><span class="math display">\[\hat{F} = \frac{H_e - H_o}{H_e} = 1 - \frac{H_o}{H_e}\]</span></p>
+<p>где <span class="math inline">\(H_o\)</span> — наблюдаемая доля гетерозигот, <span class="math inline">\(H_e\)</span> — ожидаемая доля гетерозигот (через обычный Харди-Вайнберг).</p>
+<p>Пример для эстеразы дрозофил:</p>
+<p>AA — 0.6, AB — 0.2, BB — 0.2</p>
+<p><span class="math display">\[H_o = 0.2\]</span></p>
+<p><span class="math display">\[\hat{F} = ?\]</span></p>
+<p><span class="math display">\[p = 0.6 + 0.2/2 = 0.7, \quad q = 0.2 + 0.2/2 = 0.3\]</span> <span class="math display">\[2pq = 0.42 = H_e\text{ — ожидаемое}\]</span></p>
+<p><span class="math display">\[\hat{F} = 1 - \frac{0.2}{0.42} \approx 0.5\]</span></p>
+<p>Есть определённые наиболее репрезентативные участки гомозиготности</p>
+</section>
+<section id="индексы-фиксации-f-статистики" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="индексы-фиксации-f-статистики"><span class="header-section-number">3.6</span> Индексы фиксации (F-статистики)</h2>
+<p><span class="math inline">\(H_i\)</span> — индивид, <span class="math inline">\(H_s\)</span> — субпопуляция, <span class="math inline">\(H_t\)</span> — общая популяция.</p>
+<p><span class="math display">\[F_{is} = 1 - \frac{H_i}{H_s}\]</span> <span class="math display">\[F_{it} = 1 - \frac{H_i}{H_t}\]</span> <span class="math display">\[F_{st} = 1 - \frac{H_s}{H_t}\]</span></p>
+<p>Если <span class="math inline">\(H_s \approx H_t\)</span>, то <span class="math inline">\(F_{st} \approx 0\)</span> — никакой дифференциации не происходило.</p>
+<p>Эта метрика активно применяется в статьях. Для растений придумали эпи-Fst.</p>
+<p>Пример: пусть есть популяция лемуров. Частота аллеля, характерная для вида, 20%, а в рассматриваемой ожидаемая частота 10%, а в итоге в популяции мы наблюдаем всего 9% гетерозиготных лемуров. Чему равны F-статистики?</p>
+<p><span class="math display">\[p_t = 0.2, \quad q_t = 0.8\]</span> <span class="math display">\[p_s = 0.1, \quad q_s = 0.9\]</span></p>
+<p><span class="math display">\[F_{st} = 1 - \frac{2p_sq_s}{2p_tq_t} = 1 - \frac{0.18}{0.32} = 1 - \frac{9}{16} \approx 0.44\]</span></p>
+<p><span class="math display">\[2p_iq_i = 0.09 \implies F_{it} = 1 - \frac{0.09}{0.16} \approx 0.44\]</span></p>
+<p><span class="math display">\[F_{is} = 1 - \frac{0.09}{0.09} = 0\]</span></p>
+</section>
+<section id="amova" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="amova"><span class="header-section-number">3.7</span> AMOVA</h2>
+<p>Это ANOVA, которая использует в себе F-статистики. Обычно её не применяют.</p>
+</section>
+<section id="другие-статистики" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="другие-статистики"><span class="header-section-number">3.8</span> Другие статистики</h2>
+<p>У F-статистик много критики, и вводили новые статистики: <span class="math inline">\(G_{st}\)</span>, Jost’s D, но их особо не приняли, и большинство использует <span class="math inline">\(F_{st}\)</span>.</p>
+</section>
+<section id="nick-patterson" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="nick-patterson"><span class="header-section-number">3.9</span> Nick Patterson</h2>
+<p>h-index 130. Автор многих статистик.</p>
+<section id="f2" class="level3" data-number="3.9.1">
+<h3 data-number="3.9.1" class="anchored" data-anchor-id="f2"><span class="header-section-number">3.9.1</span> F2</h3>
+<p><span class="math display">\[f_2(P_1, P_2) = E[(p_1 - p_2)^2]\]</span></p>
+<p>— генетическая дисперсия между двумя популяциями.</p>
+<p><span class="math inline">\(f_2 = f(F_{st})\)</span> — можно выразить через <span class="math inline">\(F_{st}\)</span>.</p>
+<p>Сама по себе она не очень интересна — мы могли сравнить две популяции и через <span class="math inline">\(F_{st}\)</span> через субпопуляцию.</p>
+</section>
+<section id="f3" class="level3" data-number="3.9.2">
+<h3 data-number="3.9.2" class="anchored" data-anchor-id="f3"><span class="header-section-number">3.9.2</span> F3</h3>
+<p>Есть два подхода:</p>
+<ul>
+<li>С аутгруппой: <span class="math inline">\(f_3(O, A, B) = E[(p_O - p_A)(p_O - p_B)]\)</span> — чем больше, тем ближе A к B.</li>
+<li>Admixture: <span class="math inline">\(f_3(Test, Ref_1, Ref_2) = E[(p_{test} - p_{ref1})(p_{test} - p_{ref2})]\)</span> — если &lt; 0, была admixture (если &gt; 0 — топология без смешения правильная).</li>
+</ul>
+<p>Обычно смотрят на z-score по аллелям <span class="math inline">\((x - \bar{x})/\sigma\)</span>, потому что сами f3 статистики довольно маленькие, и есть эмпирическое правило: если <span class="math inline">\(|z\text{-score}| &gt; 3\)</span> — есть статистическая значимость.</p>
+<p>Чтобы считать эти статистики, нужно хорошее покрытие — чтобы было много SNP.</p>
+</section>
+<section id="f4-статистика" class="level3" data-number="3.9.3">
+<h3 data-number="3.9.3" class="anchored" data-anchor-id="f4-статистика"><span class="header-section-number">3.9.3</span> F4-статистика</h3>
+<p>Хотим понять, к чему ближе A — к C или к D.</p>
+<p><span class="math display">\[f_4(A, B, C, D) = E[(p_A - p_B)(p_C - p_D)]\]</span></p>
+<p>Если существуют клады A, B и C, D — статистика близка к 0.</p>
+<p>Если &gt; 0, то A ближе к C. Если &lt; 0, то A ближе к D.</p>
+<p>F4-статистика потом свелась к ABBA-BABA тесту — просто нормализованная f4-статистика.</p>
+<ol type="1">
+<li>a = d, b = c, a ≠ b [ABBA]</li>
+<li>a = c, b = d, a ≠ b [BABA]</li>
+</ol>
+<p><span class="math display">\[D(A, B, C, D) = \frac{P(BABA) - P(ABBA)}{P(BABA) + P(ABBA)}\]</span></p>
+<p>В некоторых тулах формула записана наоборот, и важно понимать, по какой формуле работает наш тул.</p>
+<p>Эта статистика активно применяется. Есть кейсы с окраской уток, об окраске бабочек и сравнение европейцев и неандертальцев.</p>
+</section>
+</section>
+<section id="pca" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="pca"><span class="header-section-number">3.10</span> PCA</h2>
+<p>Есть критика — что этот метод сложно интерпретировать и что он старый — но всё равно он активно применяется, и включён в некоторые стандартные пайплайны обработки древних образцов</p>
+</section>
+<section id="кластеризация" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="кластеризация"><span class="header-section-number">3.11</span> Кластеризация</h2>
+<p>STRUCTURE (байесовский — для небольших данных).</p>
+<p>ADMIXTURE (ML, хорошо для больших данных).</p>
+<p>Оценка количества популяций, которые надо смешать, чтобы получить данный образец.</p>
+<p>Сейчас используют и другие тесты — маркеры крови и т.д.</p>
+</section>
+<section id="пакет-admixtools-qp" class="level2" data-number="3.12">
+<h2 data-number="3.12" class="anchored" data-anchor-id="пакет-admixtools-qp"><span class="header-section-number">3.12</span> Пакет ADMIXTOOLS qp</h2>
+<p>qpWave — сколько скрещиваний произошло в популяции.</p>
+<p>qpAdm — насколько они были сильные.</p>
+<p>Он умеет строить графики, где было смешение.</p>
+</section>
+<section id="домашнее-задание-2" class="level2" data-number="3.13">
+<h2 data-number="3.13" class="anchored" data-anchor-id="домашнее-задание-2"><span class="header-section-number">3.13</span> Домашнее задание 2</h2>
+<p>Надо учесть, что если сравнивать все популяции напрямую в f4 — мало SNP, поэтому стоит считать её как комбинацию f2. Для этого есть специальный пакет qpfstats.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/hw_1.html" class="pagination-link" aria-label="Домашнее задание 1">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Домашнее задание 1</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/edit/main/chapters/lection_2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/blob/main/chapters/lection_2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
