@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Домашнее задание 1 – Эволюционная и популяционная генетика</title>
+<title>4&nbsp; Домашнее задание 2 – Эволюционная и популяционная генетика</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/lection_2.html" rel="next">
-<link href="../index.html" rel="prev">
+<link href="../chapters/lection_2.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -76,6 +75,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -88,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/hw_1.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Домашнее задание 1</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/hw_2.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Домашнее задание 2</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -124,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/hw_1.html" class="sidebar-item-text sidebar-link active">
+  <a href="../chapters/hw_1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Домашнее задание 1</span></span></a>
   </div>
 </li>
@@ -136,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/hw_2.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/hw_2.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Домашнее задание 2</span></span></a>
   </div>
 </li>
@@ -150,18 +178,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#msa" id="toc-msa" class="nav-link active" data-scroll-target="#msa"><span class="header-section-number">2.1</span> MSA</a></li>
-  <li><a href="#построение-деревьев" id="toc-построение-деревьев" class="nav-link" data-scroll-target="#построение-деревьев"><span class="header-section-number">2.2</span> Построение деревьев</a></li>
-  <li><a href="#подумаем" id="toc-подумаем" class="nav-link" data-scroll-target="#подумаем"><span class="header-section-number">2.3</span> Подумаем</a></li>
+  <li><a href="#задача-1.-вероятность-случайного-совпадения-генотипа" id="toc-задача-1.-вероятность-случайного-совпадения-генотипа" class="nav-link active" data-scroll-target="#задача-1.-вероятность-случайного-совпадения-генотипа"><span class="header-section-number">4.1</span> Задача 1. Вероятность случайного совпадения генотипа</a></li>
+  <li><a href="#задача-2.-вычисление-f-статистик" id="toc-задача-2.-вычисление-f-статистик" class="nav-link" data-scroll-target="#задача-2.-вычисление-f-статистик"><span class="header-section-number">4.2</span> Задача 2. Вычисление F-статистик</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/edit/main/chapters/hw_1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/blob/main/chapters/hw_1.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/edit/main/chapters/hw_2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/blob/main/chapters/hw_2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Домашнее задание 1</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Домашнее задание 2</span></h1>
 </div>
 
 
@@ -178,54 +205,219 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Провести MSA и построить дерево с помощью NJ и ML алгоритмов для:</p>
-<ul>
-<li>16s РНК</li>
-<li>peptidyl-trna-hydrolase</li>
-</ul>
-<p>Ответить на вопросы:</p>
-<ul>
-<li>В чем разница между полученными деревьями?</li>
-<li>Какое из них точнее показывает эволюцию бактерий</li>
-</ul>
-<section id="msa" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="msa"><span class="header-section-number">2.1</span> MSA</h2>
-<p>Выполним в MEGA с помощью CluscalW</p>
+<section id="задача-1.-вероятность-случайного-совпадения-генотипа" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="задача-1.-вероятность-случайного-совпадения-генотипа"><span class="header-section-number">4.1</span> Задача 1. Вероятность случайного совпадения генотипа</h2>
+<p>В США преступников ищут по количествам повторов микросателлитных участков ДНК с помощью базы данных CODIS.</p>
+<p>Вам дана информация по двум таким участкам для 155 европейцев. Верхний ряд — кол-во повторов, нижний ряд — кол-во людей с таким кол-вом повторов.</p>
+<p><strong>D16S539</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>allele name</th>
+<th>80</th>
+<th>90</th>
+<th>100</th>
+<th>110</th>
+<th>120</th>
+<th>121</th>
+<th>130</th>
+<th>140</th>
+<th>150</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>allele count</td>
+<td>3</td>
+<td>34</td>
+<td>13</td>
+<td>102</td>
+<td>97</td>
+<td>1</td>
+<td>44</td>
+<td>13</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>TH01</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>allele name</th>
+<th>60</th>
+<th>70</th>
+<th>80</th>
+<th>90</th>
+<th>93</th>
+<th>100</th>
+<th>110</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>allele count</td>
+<td>84</td>
+<td>42</td>
+<td>37</td>
+<td>67</td>
+<td>77</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>На месте преступления были обнаружены образцы с генотипом <strong>100/80</strong> по D16S539 и <strong>70/93</strong> по TH01.</p>
+<p>Мы задержали европейца и держим его на нарах. Его генотип совпадает с тем, который был обнаружен на месте преступления. Какова вероятность, что он невиновен и совпадение — просто случайность?</p>
+<hr>
+<ol type="1">
+<li>Общее число аллелей</li>
+</ol>
+<p>В выборке 155 человек, каждый даёт по 2 аллеля:</p>
+<p><span class="math display">\[
+2 \times 155 = 310 \text{ аллелей}
+\]</span></p>
+<ol start="2" type="1">
+<li>Локус D16S539</li>
+</ol>
+<p>Генотип с места преступления: <strong>100/80</strong> — это гетерозигота</p>
+<p><span class="math display">\[
+P_{D16S539} = 2 \cdot p_{100} \cdot p_{80}
+= 2 \cdot \frac{13}{310} \cdot \frac{3}{310}
+\approx 0.000812
+\]</span></p>
+<ol start="3" type="1">
+<li>Локус TH01</li>
+</ol>
+<p>Генотип с места преступления: <strong>70/93</strong> — тоже гетерозигота.</p>
+<p><span class="math display">\[
+P_{TH01} = 2 \cdot p_{70} \cdot p_{93}
+= 2 \cdot \frac{42}{310} \cdot \frac{77}{310}
+\approx 0.0673
+\]</span></p>
+<ol start="4" type="1">
+<li>Совместная вероятность</li>
+</ol>
+<p>Локусы D16S539 и TH01 находятся на разных хромосомах и наследуются <strong>независимо</strong>, поэтому вероятности перемножаются:</p>
+<p><span class="math display">\[
+P = P_{D16S539} \cdot P_{TH01}
+= 0.000812 \times 0.0673
+\approx 5.47 \times 10^{-5}
+\]</span></p>
+<p>то есть примерно <strong>0.0055 %</strong> (1 случай из ~18 000).</p>
 </section>
-<section id="построение-деревьев" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="построение-деревьев"><span class="header-section-number">2.2</span> Построение деревьев</h2>
-<p>Standart Bootstrap - 500 репликаций</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../figs/hw_1/16s_NJ.svg" class="img-fluid figure-img"></p>
-<figcaption>16s_NJ</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../figs/hw_1/16s_ML.svg" class="img-fluid figure-img"></p>
-<figcaption>16s_ML</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../figs/hw_1/peptidyl-trna-hydrolase_NJ.svg" class="img-fluid figure-img"></p>
-<figcaption>peptidyl-trna-hydrolase_NJ</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../figs/hw_1/peptidyl-trna-hydrolase_ML.svg" class="img-fluid figure-img"></p>
-<figcaption>peptidyl-trna-hydrolase_ML</figcaption>
-</figure>
-</div>
-</section>
-<section id="подумаем" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="подумаем"><span class="header-section-number">2.3</span> Подумаем</h2>
-<p>Видно, что топологии 16s и Peptidyl-tRNA hydrolase деревьев незначительно отличаются (положение NEIMA по отношению к BURCA и кладе YERPS, YERPE, SALTY, PASMU).</p>
-<p>Бутстрепы на дереве с 16s РНК более высокие, то есть топология более стабильна. Я думаю, что это связано с тем, что 16s РНК является некодирующей и довольно консервативна. Она эволюционирует медленно и равномерно.</p>
-<p>А Peptidyl-tRNA hydrolase - это белок-кодирующий ген. Из-за давления ествественного отбора и горизонтального переноса генов в нем эволюция идет активнее и может быть разной для разных линий бактерий.</p>
-<p>Поэтому дерево 16S точнее показывает эволюцию бактерий (здесь NJ и ML почти не отличаются).</p>
+<section id="задача-2.-вычисление-f-статистик" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="задача-2.-вычисление-f-статистик"><span class="header-section-number">4.2</span> Задача 2. Вычисление F-статистик</h2>
+<p>Птицы славки демонстрируют высокую вариабельность в гене Wnt. Вам дана информация по 2 популяциям славок:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Species</th>
+<th>11</th>
+<th>12</th>
+<th>22</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Blue-winged</td>
+<td>2</td>
+<td>21</td>
+<td>31</td>
+</tr>
+<tr class="even">
+<td>Golden-winged</td>
+<td>48</td>
+<td>12</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Рассчитайте:</p>
+<ul>
+<li><span class="math inline">\(F_{IS}\)</span> для синих славок</li>
+<li><span class="math inline">\(F_{ST}\)</span> синих славок по отношению ко всем славкам (синие + золотые)</li>
+<li>Среднюю <span class="math inline">\(F_{ST}\)</span></li>
+</ul>
+<hr>
+<ul>
+<li><span class="math inline">\(H_I\)</span> — наблюдаемая гетерозиготность;</li>
+<li><span class="math inline">\(H_S\)</span> — ожидаемая гетерозиготность по закону Харди–Вайнберга <strong>внутри</strong> субпопуляции;</li>
+<li><span class="math inline">\(H_T\)</span> — ожидаемая гетерозиготность в <strong>объединённой</strong> популяции;</li>
+<li><span class="math inline">\(N\)</span> — число особей (каждая даёт 2 аллеля, поэтому знаменатель <span class="math inline">\(2N\)</span>).</li>
+</ul>
+<hr>
+<ol type="1">
+<li><span class="math inline">\(F_{IS}\)</span> для синих славок</li>
+</ol>
+<p><span class="math display">\[
+F_{IS} = 1 - \frac{H_I}{H_S}
+\]</span></p>
+<p><strong>Наблюдаемая гетерозиготность</strong> (доля гетерозигот 12 среди всех особей):</p>
+<p><span class="math display">\[
+H_I = \frac{21}{54} \approx 0.389
+\]</span></p>
+<p><strong>Ожидаемая гетерозиготность</strong> по Харди–Вайнбергу:</p>
+<p><span class="math display">\[
+H_S = 2pq
+= 2 \cdot \frac{2 \cdot 11 + 12}{2N} \cdot \frac{2 \cdot 22 + 12}{2N}
+= 2 \cdot \frac{4 + 21}{108} \cdot \frac{62 + 21}{108}
+\approx 0.3558
+\]</span></p>
+<p><span class="math display">\[
+F_{IS} = 1 - \frac{0.389}{0.3558} \approx -0.093
+\]</span></p>
+<blockquote class="blockquote">
+<p><strong>Интерпретация:</strong> отрицательное значение <span class="math inline">\(F_{IS}\)</span> означает <strong>избыток гетерозигот</strong> относительно ожидания Харди–Вайнберга.</p>
+</blockquote>
+<hr>
+<ol start="2" type="1">
+<li><span class="math inline">\(F_{ST}\)</span> синих славок относительно всех славок</li>
+</ol>
+<p><span class="math display">\[
+F_{ST} = 1 - \frac{H_S}{H_T}
+\]</span></p>
+<p><strong>Внутрипопуляционная ожидаемая гетерозиготность</strong> (для синих):</p>
+<p><span class="math display">\[
+H_S \approx 0.3558
+\]</span></p>
+<p><strong>Ожидаемая гетерозиготность в объединённой популяции</strong>:</p>
+<p><span class="math display">\[
+H_T = 2pq
+= 2 \cdot \frac{2 \cdot 50 + 33}{230} \cdot \frac{2 \cdot 32 + 33}{230}
+\approx 0.4877
+\]</span></p>
+<p><span class="math display">\[
+F_{ST}^{blue} = 1 - \frac{0.3558}{0.4877} \approx 0.270
+\]</span></p>
+<hr>
+<ol start="3" type="1">
+<li>Средняя <span class="math inline">\(F_{ST}\)</span></li>
+</ol>
+<ul>
+<li><span class="math inline">\(F_{ST}\)</span> для золотых славок</li>
+</ul>
+<p><span class="math display">\[
+F_{ST}^{gold} = 1 - \frac{H_S^{gold}}{H_T}
+\]</span></p>
+<p><span class="math display">\[
+H_S^{gold}
+= 2 \cdot \frac{2 \cdot 48 + 12}{122} \cdot \frac{2 \cdot 1 + 12}{122}
+\approx 0.2033
+\]</span></p>
+<p><span class="math display">\[
+F_{ST}^{gold} = 1 - \frac{0.2033}{0.4877} \approx 0.583
+\]</span></p>
+<ul>
+<li>Взвешенное среднее</li>
+</ul>
+<p><span class="math display">\[
+\bar{F}_{ST}
+= \frac{N_{blue} \cdot F_{ST}^{blue} + N_{gold} \cdot F_{ST}^{gold}}
+       {N_{blue} + N_{gold}}
+= \frac{54 \cdot 0.270 + 61 \cdot 0.583}{54 + 61}
+\approx 0.436
+\]</span></p>
 
 
 </section>
@@ -633,14 +825,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../index.html" class="pagination-link" aria-label="О книге">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">О книге</span></span>
+      <a href="../chapters/lection_2.html" class="pagination-link" aria-label="Лекция 2. F-статистика">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Лекция 2. F-статистика</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/lection_2.html" class="pagination-link" aria-label="Лекция 2. F-статистика">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Лекция 2. F-статистика</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -648,4 +837,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/edit/main/chapters/hw_1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/blob/main/chapters/hw_1.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/edit/main/chapters/hw_2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/blob/main/chapters/hw_2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

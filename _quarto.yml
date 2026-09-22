@@ -8,6 +8,7 @@ book:
     - index.qmd
     - chapters/hw_1.qmd
     - chapters/lection_2.qmd
+    - chapters/hw_2.qmd
   repo-url: https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main
   repo-actions: [edit, source, issue]
 
