@@ -10,6 +10,9 @@ book:
     - chapters/lection_2.qmd
     - chapters/hw_2.qmd
     - chapters/hw_2_2.qmd
+    - chapters/hw_3_dnds_mipt.ipynb
+
+
   repo-url: https://github.com/florenskaial118/Evolutionary-and-Population-Genetics/tree/main
   repo-actions: [edit, source, issue]
 
